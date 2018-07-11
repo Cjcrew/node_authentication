@@ -2,12 +2,19 @@ const express     = require('express');
 const bodyParser  = require('body-parser');
 const mongoose    = require('mongoose');
 const app         = express();
+const sessions    = require('client-sessions');
 const User        = require('./models/user');
 
 // APP CONFIG
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: false }));
 // app.use(bodyParser.json());
+// Cookie Setup
+app.use(sessions({
+  cookieName: 'session',
+  secret: 'remaof982354zxaws',
+  duration: 30 * 60 * 1000
+}));
 
 // Connect to mongoDB
 mongoose.connect('mongodb://localhost/auth');
@@ -34,6 +41,8 @@ app.post('/login', (req, res) => {
         error: 'Incorrect email or password.'
       });
     } else {
+
+    req.session.userId = user._id;
     res.redirect('/dashboard');
     }
   });
@@ -61,8 +70,22 @@ app.post('/register', (req, res) => {
   });
 });
 
-app.get('/dashboard', (req, res) => {
-  res.render('dashboard.ejs')
+app.get('/dashboard', (req, res, next) => {
+  if (!(req.session && req.session.userId)) {
+    return res.redirect('/login');
+  }
+
+  User.findById(req.session.userId, (err, user) => {
+    if (err) {
+      return next(err);
+    }
+
+    else if (!user) {
+      return res.redirect('/login');
+    }
+
+    res.render('dashboard.ejs');
+  });
 });
 
 app.listen(3000, () => console.log('App started on port 3000...'));
