@@ -15,3 +15,11 @@ before(function(done){
     console.log('Connection error:', error);
   });
 });
+
+// Drop users collection before the test <== Using a Mocha Hook function ==>
+beforeEach(function(done){
+  // Drop the collection
+  mongoose.connection.collections.users.drop(function(){
+    done();
+  });
+});
