@@ -4,12 +4,12 @@ const mongoose    = require('mongoose');
 const app         = express();
 const User        = require('./models/user');
 
-//APP CONFIG
+// APP CONFIG
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: false }));
 // app.use(bodyParser.json());
 
-//CONNECT DB
+// Connect to mongoDB
 mongoose.connect('mongodb://localhost/auth');
 mongoose.connection.once('open', () => {
   console.log('Connection to db has been made...');
