@@ -27,13 +27,22 @@ app.get('/login', (req, res) => {
   res.render('login.ejs');
 });
 
+app.post('/login', (req, res) => {
+  User.findOne({email: req.body.email}, (err, user) => {
+    if (err || !user || req.body.password !== user.password) {
+      return res.render('login', {
+        error: 'Incorrect email or password.'
+      });
+    } else {
+    res.redirect('/dashboard');
+    }
+  });
+});
+
 app.get('/register', (req, res) => {
   res.render('register.ejs')
 });
 
-app.get('/dashboard', (req, res) => {
-  res.render('dashboard.ejs')
-});
 
 app.post('/register', (req, res) => {
   let user = new User(req.body);
@@ -50,6 +59,10 @@ app.post('/register', (req, res) => {
 
     res.redirect('/dashboard');
   });
+});
+
+app.get('/dashboard', (req, res) => {
+  res.render('dashboard.ejs')
 });
 
 app.listen(3000, () => console.log('App started on port 3000...'));
