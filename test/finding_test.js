@@ -4,14 +4,16 @@ const User        = require('../models/user');
 
 describe('Finding records', function() {
 
+  var user;
+
 // <== Using a Mocha Hook function ==>
   beforeEach(function(done){
-    var user = new User({
+    user = new User({
       username:   "Test",
       firstName:  "John",
       lastName:   "Doe",
       email:      "something@dev.com",
-      password:   "12345"
+      password:   "54321"
     });
 
     user.save().then(function(){
@@ -29,6 +31,14 @@ describe('Finding records', function() {
         assert(result.name === 'Test');
       });
 
-    done();
+      done();
+    });
+
+    it('Finds one user by id from the db', function(done){
+
+      User.findOne({_id: user._id}).then(function(result) {
+        assert(result._id.toString() === user._id.toString());
+      });
+      done();
     });
 });
