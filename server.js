@@ -38,12 +38,12 @@ app.get('/login', (req, res) => {
 
 app.post('/login', (req, res) => {
   User.findOne({email: req.body.email}, (err, user) => {
-    if (err || !user || req.body.password !== user.password) {
+    if (!user || !bcrypt.compareSync(req.body.password, user.password)) {
       return res.render('login', {
         error: 'Incorrect email or password.'
       });
     } else {
-
+      
     req.session.userId = user._id;
     res.redirect('/dashboard');
     }
@@ -56,6 +56,8 @@ app.get('/register', (req, res) => {
 
 
 app.post('/register', (req, res) => {
+  let hash = bcrypt.hashSync(req.body.password, 14);
+  req.body.password = hash;
   let user = new User(req.body);
 
   user.save((err) => {
