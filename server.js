@@ -3,12 +3,14 @@ const bodyParser  = require('body-parser');
 const mongoose    = require('mongoose');
 const app         = express();
 const sessions    = require('client-sessions');
+const bcrypt       = require('bcryptjs');
 const User        = require('./models/user');
 
 // APP CONFIG
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: false }));
 // app.use(bodyParser.json());
+
 // Cookie Setup
 app.use(sessions({
   cookieName: 'session',
