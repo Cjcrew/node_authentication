@@ -17,11 +17,8 @@ describe('Finding records', function() {
     });
 
     user.save().then(function(){
-      // Checking if the user is no longer in memory and has been saved to the db.
-      assert(user.isNew === false);
+      done();
     });
-
-    done();
   });
 
   // Create tests
