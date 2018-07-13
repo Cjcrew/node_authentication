@@ -3,8 +3,12 @@ const bodyParser  = require('body-parser');
 const mongoose    = require('mongoose');
 const app         = express();
 const sessions    = require('client-sessions');
-const bcrypt       = require('bcryptjs');
+const bcrypt      = require('bcryptjs');
 const User        = require('./models/user');
+
+// Requiring routes
+const index             = require('./routes/index');
+const dashboard         = require('./routes/dashboard');
 
 // APP CONFIG
 app.set('view engine', 'ejs');
@@ -15,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(sessions({
   cookieName: 'session',
   secret: 'remaof982354zxaws',
-  duration: 30 * 60 * 1000
+  duration: 30 * 60 * 1000 // 30 mins
 }));
 
 // Connect to mongoDB
@@ -26,57 +30,10 @@ mongoose.connection.once('open', () => {
   console.error.bind(console, 'Connection error:');
 });
 
-
-// Routes
-app.get('/', (req, res) => {
-  res.render('index.ejs');
-});
-
-app.get('/login', (req, res) => {
-  res.render('login.ejs');
-});
-
-app.post('/login', (req, res) => {
-  User.findOne({email: req.body.email}, (err, user) => {
-    if (!user || !bcrypt.compareSync(req.body.password, user.password)) {
-      return res.render('login', {
-        error: 'Incorrect email or password.'
-      });
-    } else {
-      
-    req.session.userId = user._id;
-    res.redirect('/dashboard');
-    }
-  });
-});
-
-app.get('/register', (req, res) => {
-  res.render('register.ejs')
-});
-
-
-app.post('/register', (req, res) => {
-  let hash = bcrypt.hashSync(req.body.password, 14);
-  req.body.password = hash;
-  let user = new User(req.body);
-
-  user.save((err) => {
-    if (err) {
-      let error = "Something bad happened! Please try again.";
-      if (err.code === 11000) {
-        error = "That email is already taken, please try another.";
-      }
-
-      return res.render('register', {error: error});
-    }
-
-    res.redirect('/dashboard');
-  });
-});
-
-app.get('/dashboard', (req, res, next) => {
-  if (!(req.session && req.session.userId)) {
-    return res.redirect('/login');
+// Middleware _ Setup
+app.use((req, res, next) => {
+  if(!(req.session && req.session.userId)) {
+    return next();
   }
 
   User.findById(req.session.userId, (err, user) => {
@@ -84,12 +41,21 @@ app.get('/dashboard', (req, res, next) => {
       return next(err);
     }
 
-    else if (!user) {
-      return res.redirect('/login');
+    if (!user) {
+      return next();
     }
 
-    res.render('dashboard.ejs');
+    user.password = undefined;
+    req.user = user;
+    // available in all templates
+    res.locals.user = user;
+
+    next();
   });
 });
+
+// Routes
+app.use('/', index);
+app.use('/dashboard',dashboard);
 
 app.listen(3000, () => console.log('App started on port 3000...'));
