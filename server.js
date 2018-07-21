@@ -7,6 +7,7 @@ const bcrypt      = require('bcryptjs');
 const User        = require('./models/user');
 const userInfo    = require('./middleware/user_info');
 const csurf       = require('csurf');
+const helmet      = require('helmet');
 
 
 // Requiring routes
@@ -26,12 +27,13 @@ mongoose.connection.once('open', () => {
 //  =====================
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(helmet());
 
 // Cookie Setup
 app.use(sessions({
   cookieName: 'session',
   secret: 'remaof982354zxaws',
-  duration: 30 * 60 * 1000 // 30 mins
+  duration: 30 * 60 * 1000, // 30 mins
   httpOnly: true,
   secure: false // set to false for development purposes
 }));
