@@ -15,6 +15,7 @@
     "csurf": "^1.9.0",
     "ejs": "^2.6.1",
     "express": "^4.16.3",
+    "helmet": "^3.12.2",
     "mongoose": "^5.1.7"
   },
   "devDependencies": {
