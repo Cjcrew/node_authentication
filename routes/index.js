@@ -7,14 +7,14 @@ const sessions    = require('client-sessions');
 const User        = require('../models/user');
 
 // =======================
-//      INDEX ROUTE
+// INDEX ROUTE
 // =======================
 router.get('/', (req, res) => {
   res.render('index.ejs', { csrfToken: req.csrfToken() });
 });
 
 // =======================
-//      LOGIN ROUTE
+// LOGIN ROUTE
 // =======================
 router.get('/login', (req, res) => {
   res.render('login.ejs', { csrfToken: req.csrfToken() });
@@ -22,7 +22,7 @@ router.get('/login', (req, res) => {
 
 
 // =======================
-//    POST LOGIN ROUTE
+// POST LOGIN ROUTE
 // =======================
 router.post('/login', (req, res) => {
   User.findOne({email: req.body.email}, (err, user) => {
@@ -38,9 +38,16 @@ router.post('/login', (req, res) => {
   });
 });
 
+// =======================
+// LOGOUT ROUTE
+// =======================
+router.get('/logout', (req, res) => {
+  req.session.destroy();
+  return res.redirect('/login');
+});
 
 // =======================
-//      REGISTER ROUTE
+// REGISTER ROUTE
 // =======================
 router.get('/register', (req, res) => {
   res.render('register.ejs', { csrfToken: req.csrfToken() });
@@ -48,7 +55,7 @@ router.get('/register', (req, res) => {
 
 
 // =======================
-//   POST REGISTER ROUTE
+// POST REGISTER ROUTE
 // =======================
 router.post('/register', (req, res) => {
   let hash = bcrypt.hashSync(req.body.password, 14);

@@ -35,7 +35,7 @@ app.use(helmet());
 app.use(sessions({
   cookieName: 'session',
   secret: process.env.COOKIE_SECRET,
-  duration: 30 * 60 * 1000, // 30 mins
+  duration: 60 * 60 * 1000, // 1hr
   httpOnly: true,
   secure: false // set to false for development purposes
 }));

@@ -6,10 +6,10 @@ const User          = require('../models/user');
 const loginRequired = require('../middleware/login_required');
 
 // =======================
-//      DASHBOARD ROUTE
+// DASHBOARD ROUTE
 // =======================
 router.get('/', loginRequired, (req, res, next) => {
-  res.render('dashboard.ejs');
+  res.render('dashboard.ejs', { csrfToken: req.csrfToken() });
 });
 
 module.exports = router;
