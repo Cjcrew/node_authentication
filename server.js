@@ -6,6 +6,8 @@ const sessions    = require('client-sessions');
 const bcrypt      = require('bcryptjs');
 const User        = require('./models/user');
 const userInfo    = require('./middleware/user_info');
+const csurf       = require('csurf');
+
 
 // Requiring routes
 const index             = require('./routes/index');
@@ -24,12 +26,19 @@ mongoose.connection.once('open', () => {
 //  =====================
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: false }));
+
 // Cookie Setup
 app.use(sessions({
   cookieName: 'session',
   secret: 'remaof982354zxaws',
   duration: 30 * 60 * 1000 // 30 mins
+  httpOnly: true,
+  secure: false // false for development purposes
 }));
+
+// CSRF Protection
+app.use(csurf());
+
 // Middleware
 app.use(userInfo);
 

@@ -10,14 +10,14 @@ const User        = require('../models/user');
 //      INDEX ROUTE
 // =======================
 router.get('/', (req, res) => {
-  res.render('index.ejs');
+  res.render('index.ejs', { csrfToken: req.csrfToken() });
 });
 
 // =======================
 //      LOGIN ROUTE
 // =======================
 router.get('/login', (req, res) => {
-  res.render('login.ejs');
+  res.render('login.ejs', { csrfToken: req.csrfToken() });
 });
 
 
@@ -43,7 +43,7 @@ router.post('/login', (req, res) => {
 //      REGISTER ROUTE
 // =======================
 router.get('/register', (req, res) => {
-  res.render('register.ejs')
+  res.render('register.ejs', { csrfToken: req.csrfToken() });
 });
 
 
