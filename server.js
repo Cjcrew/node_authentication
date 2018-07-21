@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const express     = require('express');
 const bodyParser  = require('body-parser');
 const mongoose    = require('mongoose');
@@ -32,7 +34,7 @@ app.use(helmet());
 // Cookie Setup
 app.use(sessions({
   cookieName: 'session',
-  secret: 'remaof982354zxaws',
+  secret: process.env.COOKIE_SECRET,
   duration: 30 * 60 * 1000, // 30 mins
   httpOnly: true,
   secure: false // set to false for development purposes
