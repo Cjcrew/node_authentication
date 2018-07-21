@@ -33,7 +33,7 @@ app.use(sessions({
   secret: 'remaof982354zxaws',
   duration: 30 * 60 * 1000 // 30 mins
   httpOnly: true,
-  secure: false // false for development purposes
+  secure: false // set to false for development purposes
 }));
 
 // CSRF Protection
