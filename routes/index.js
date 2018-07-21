@@ -5,6 +5,7 @@ const bodyParser  = require('body-parser');
 const bcrypt      = require('bcryptjs');
 const sessions    = require('client-sessions');
 const User        = require('../models/user');
+const middleware  = require('../middleware/login_required');
 
 // =======================
 // INDEX ROUTE
@@ -16,7 +17,7 @@ router.get('/', (req, res) => {
 // =======================
 // LOGIN ROUTE
 // =======================
-router.get('/login', (req, res) => {
+router.get('/login', middleware.ifLoggedIn, (req, res) => {
   res.render('login.ejs', { csrfToken: req.csrfToken() });
 });
 
