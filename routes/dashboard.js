@@ -4,7 +4,7 @@ const mongoose      = require('mongoose');
 const router        = express.Router();
 const sessions      = require('client-sessions');
 const User          = require('../models/user');
-const middleware    = require('../middleware/login_required');
+const middleware    = require('../middleware/middleware');
 // ===================================================
 
 
