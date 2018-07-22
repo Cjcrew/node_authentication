@@ -1,3 +1,4 @@
+// ===================================================
 const express     = require('express');
 const mongoose    = require('mongoose');
 const router      = express.Router();
@@ -6,11 +7,13 @@ const bcrypt      = require('bcryptjs');
 const sessions    = require('client-sessions');
 const User        = require('../models/user');
 const middleware  = require('../middleware/login_required');
+// ===================================================
+
 
 // =======================
 // INDEX ROUTE
 // =======================
-router.get('/', (req, res) => {
+router.get('/', (req, res,) => {
   res.render('index.ejs', { csrfToken: req.csrfToken() });
 });
 
@@ -28,9 +31,7 @@ router.get('/login', middleware.ifLoggedIn, (req, res) => {
 router.post('/login', (req, res) => {
   User.findOne({email: req.body.email}, (err, user) => {
     if (!user || !bcrypt.compareSync(req.body.password, user.password)) {
-      return res.render('login', {
-        error: 'Incorrect email or password.'
-      });
+      return res.redirect('login');
     } else {
 
     req.session.userId = user._id;
@@ -73,7 +74,8 @@ router.post('/register', (req, res) => {
       return res.render('register', {error: error});
     }
 
-    res.redirect('/dashboard');
+
+    res.redirect('/login');
   });
 });
 
