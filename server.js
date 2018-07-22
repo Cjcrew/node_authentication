@@ -1,5 +1,6 @@
 require('dotenv').config()
 
+// ===================================================
 const express     = require('express');
 const bodyParser  = require('body-parser');
 const mongoose    = require('mongoose');
@@ -10,9 +11,9 @@ const User        = require('./models/user');
 const userInfo    = require('./middleware/user_info');
 const csurf       = require('csurf');
 const helmet      = require('helmet');
+// ===================================================
 
-
-// Requiring routes
+// Require routes
 const index             = require('./routes/index');
 const dashboard         = require('./routes/dashboard');
 
@@ -43,11 +44,11 @@ app.use(sessions({
 // CSRF Protection
 app.use(csurf());
 
-// Middleware
+// Easily accesible user info middleware
 app.use(userInfo);
 
-// Routes
+// Setup Routes
 app.use('/', index);
-app.use('/dashboard',dashboard);
+app.use('/dashboard', dashboard);
 
 app.listen(3000, () => console.log('App started on port 3000...'));
