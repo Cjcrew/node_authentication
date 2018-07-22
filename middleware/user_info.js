@@ -1,7 +1,9 @@
+// ===================================================
 const express     = require('express');
 const mongoose    = require('mongoose');
 const sessions    = require('client-sessions');
 const User        = require('../models/user');
+// ===================================================
 
 // Middleware _ Setup
 function userInfo(req, res, next) {
