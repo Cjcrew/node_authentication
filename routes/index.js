@@ -79,4 +79,11 @@ router.post('/register', (req, res) => {
   });
 });
 
+router.get('*', (req, res, next) => {
+  let err = new Error('404: Not Found ' + req.originalUrl); //here
+  err.status = 404;
+  next(err);
+  res.render('errorPage');
+});
+
 module.exports = router;
