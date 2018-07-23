@@ -11,6 +11,7 @@ const User        = require('./models/user');
 const userInfo    = require('./middleware/user_info');
 const csurf       = require('csurf');
 const helmet      = require('helmet');
+const middleware  = require('./middleware/middleware');
 // ===================================================
 
 // Require routes
@@ -50,5 +51,12 @@ app.use(userInfo);
 // Setup Routes
 app.use('/', index);
 app.use('/dashboard', dashboard);
+
+// Error Handler middleware
+// app.use(function (req, res, next) {
+//     let err = new Error('404: Not Found ' + req.originalUrl);
+//     err.status = 404;
+//     next(err);
+// });
 
 app.listen(3000, () => console.log('App started on port 3000...'));
