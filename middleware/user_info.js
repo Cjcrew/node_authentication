@@ -20,7 +20,7 @@ function userInfo(req, res, next) {
       return next();
     }
 
-    user.password = undefined;
+    user.password = null;
     req.user = user;
     // available in all templates
     res.locals.user = user;
