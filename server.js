@@ -53,10 +53,11 @@ app.use('/', index);
 app.use('/dashboard', dashboard);
 
 // Error Handler middleware
-// app.use(function (req, res, next) {
-//     let err = new Error('404: Not Found ' + req.originalUrl);
-//     err.status = 404;
-//     next(err);
-// });
+app.use(function (req, res, next) {
+    let err = new Error('404: Not Found ' + req.originalUrl);
+    err.status = 404;
+    next(err);
+    res.render('errorPage');
+});
 
 app.listen(3000, () => console.log('App started on port 3000...'));
