@@ -1,12 +1,22 @@
-<h1>Sample Log In Page</h1>
+<% include ./partials/header %>
 
-<form  action="/login" method="post">
-  <span>Email:</span>
-  <input type="email" name="email" required=true>
-  <span>Password:</span>
-  <input type="password" name="password" required=true>
-  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-  <input type="submit">
+<!-- Height Filler -->
+<div class="filler-div"></div>
+
+<!-- Login Form -->
+<form class="loginForm" action="/login" method="post">
+  <div class="formContainer">
+    <label for="email"><strong><u>Email address:</u></strong></label>
+    <input type="email" placeholder="JohnDoe@gmail.com" name="email" required>
+
+    <label for="password"><strong><u>Password:</u></strong></label>
+    <input type="password" name="password" placeholder="Password" required>
+    <!-- csrf Protection -->
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+    <button type="submit">Login <i class="fas fa-sign-in-alt"></i></button>
+    <a href="/register">Don't have an account yet? Click here to sign up...</a>
+  </div>
 </form>
 
-<a href="/register">Don't have an account yet? Click here to sign up..</a>
+<% include ./partials/footer %>
