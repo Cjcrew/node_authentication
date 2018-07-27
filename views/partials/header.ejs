@@ -1,14 +1,30 @@
+<!DOCTYPE html>
 <html>
   <head>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- GitHub Favicon -->
+    <link rel="icon" type="image/png" href="http://github.com/windows-tile.png">
+    <link rel="stylesheet" href="../stylesheets/main.css">
+    <link rel="stylesheet" href="../stylesheets/forms.css">
+    <!-- Latest FontAwesome from a cdn -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
   </head>
   <body>
 
+<!-- Navbar -->
 <div class='navbar'>
-  <a href="/dashboard" class='logo'>Logo</a>
-  <div class='header-right'>
-    <a href="#">Dashboard</a> <!-- Display Dashboard if logged in -->
-    <a href="#">Log in</a> <!-- Display Username is logged in -->
-    <a href="#">Logout</a> <!-- Display logout only if logged in -->
+  <a href='/' class='logo'><i class="fas fa-flask"></i></a>
+  <div class='navbar-right'>
+    <% if (user) { %>
+      <a href='/dashboard'>Dashboard <i class="fas fa-chalkboard"></i></a> <!-- Display Dashboard if logged in -->
+    <%  } %>
+    <% if (!user) { %>
+      <a href='/login'>Log in</a> <!-- Display Username is logged in -->
+    <%  } else { %>
+      <a href='#'><span class="lit">Welcome, <i class="fas fa-user-circle"></i> <strong><%= user.username %></strong></span></a>
+    <%  } %>
+    <% if (user) { %>
+      <a href='/logout' method='post'>Logout <i class="fas fa-sign-out-alt"></i></a> <!-- Display logout only if logged in -->
+    <% } %>
   </div>
 </div>
