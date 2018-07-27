@@ -1,18 +1,30 @@
-<h1>Sample Register Page</h1>
+<% include ./partials/header %>
 
-<form action="/register" method="post">
-  <span>Username:</span>
-  <input type="text" name="username" required=true>
-  <span>First Name:</span>
-  <input type="text" name="firstName" required=true>
-  <span>Last Name:</span>
-  <input type="text" name="lastName" required=true>
-  <span>Password:</span>
-  <input type="password" name="password" required=true>
-  <span>Email:</span>
-  <input type="email" name="email" required=true>
+<!-- Height Filler -->
+<div class="filler-div-register"></div>
+
+<form class="registerForm" action="/register" method="post">
+  <label for="username"><strong><u>Username:</u></strong></label>
+  <input type="text" name="username" placeholder="CatLover69" required>
+
+  <label for="firstName"><strong><u>First Name:</u></strong></label>
+  <input type="text" name="firstName" placeholder="John" required>
+
+  <label for="lastName"><strong><u>Last Name:</u></strong></label>
+  <input type="text" name="lastName" placeholder="Doe" required>
+
+  <label for="password"><strong><u>Password:</u></strong></label>
+  <input type="password" name="password" required>
+
+  <label for="email"><strong><u>Email:</u></strong></label>
+  <input type="email" name="email" placeholder="JohnDoe@gmail.com" required>
+  <!-- csrf Protection -->
   <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-  <input type="submit">
+
+  <button type="submit">Register <i class="fas fa-sign-in-alt"></i></button>
+
+  <a href="/">Back to starting page</a>
 </form>
 
-<a href="/">Back to starting page</a>
+
+<% include ./partials/footer %>
