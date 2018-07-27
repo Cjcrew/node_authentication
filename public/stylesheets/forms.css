@@ -29,6 +29,14 @@ input[type=email], input[type=password], input[type=text] {
   box-sizing: border-box;
 }
 
+form input:hover {
+  border-color: #6ABD49;
+  border-width: 3px;
+  transition: border-color 2s;
+  transition: border-width 350ms;
+  text-decoration: none;
+}
+
 form label {
   color: #E6EBF4;
 }
