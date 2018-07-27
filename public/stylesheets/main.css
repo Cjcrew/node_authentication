@@ -1,0 +1,113 @@
+* {box-sizing: border-box;}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  /* background-color: #23262a; */
+  background-color: #2F3136;
+  background-image: url(../svg/topography-black.svg);
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: #36383E;
+  padding: 12px 10px;
+  border-bottom: 6px solid #3E4147;
+}
+
+.navbar a {
+  float: left;
+  color: #595F67;
+  text-align: center;
+  padding: 8px;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 20px;
+  border-radius: 4px;
+}
+
+.navbar a.logo {
+  font-size: 25px;
+  font-weight: bold;
+  color: #dfdedf
+}
+
+.navbar a:hover {
+  /* background-color: #F8F7F8;
+  height: 2em;
+  width: 4em; */
+  color: #F8F7F8;
+}
+
+.navbar-right {
+  float: right;
+}
+
+.filler-div {
+  height: 150px;
+}
+
+.filler-div-register {
+  height: 100px;
+}
+
+.indexLogo {
+  text-align: center;
+}
+
+.indexText {
+  margin: 0 auto;
+  height: 20px;
+  width: 15%;
+  text-align: center;
+}
+
+.indexP {
+  margin: 4px;
+  padding: 6px;
+  border-radius: 25px;
+  background-color: white;
+  border: 1px solid #6ABD49;
+  font-family: "Lucida Console";
+  color: #6ABD49;
+}
+
+/* .indexContainer {
+  margin: 0 auto;
+  height: 380px;
+  width: 580px;
+  border-radius: 20px;
+  border: 5px solid #677BC4;
+  background-color: white;
+} */
+
+.lit {
+  color: #E6EBF4;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #36383E;
+  text-align: center;
+  padding: 5px 5px;
+  border-top: 4px solid #3E4147;
+}
+
+.footer a {
+  text-decoration: none;
+  color: white;
+}
+
+@media screen and (max-width: 500px) {
+  .navbar a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .navbar-right {
+    float: none;
+  }
+}
