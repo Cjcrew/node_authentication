@@ -8,7 +8,7 @@ const app         = express();
 const sessions    = require('client-sessions');
 const bcrypt      = require('bcryptjs');
 const User        = require('./models/user');
-const userInfo    = require('./middleware/user_info');
+// const userInfo    = require('./middleware/user_info');
 const csurf       = require('csurf');
 const helmet      = require('helmet');
 const middleware  = require('./middleware/middleware');
@@ -31,7 +31,7 @@ mongoose.connection.once('open', () => {
 //  =====================
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use('/static', express.static(path.join(__dirname, 'public')))
+app.use(express.static(__dirname + '/public'));
 app.use(helmet());
 
 // Cookie Setup
@@ -47,7 +47,29 @@ app.use(sessions({
 app.use(csurf());
 
 // Easily accesible user info middleware
-app.use(userInfo);
+app.use((req, res, next) => {
+  res.locals.user = false;
+  if(!(req.session && req.session.userId)) {
+    return next();
+  }
+
+  User.findById(req.session.userId, (err, user) => {
+    if (err) {
+      return next(err);
+    }
+
+    if (!user) {
+      return next();
+    }
+
+    user.password = null;
+    req.user = user;
+    // available in all templates
+    res.locals.user = user;
+
+    next();
+  });
+});
 
 // Setup Routes
 app.use('/', index);
