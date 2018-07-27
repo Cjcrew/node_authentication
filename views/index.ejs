@@ -1,3 +1,22 @@
-<h1>Sample Landing Page</h1>
+<% include ./partials/header %>
 
-<a href="/login">Log In</a>
+<style>
+/* Change Background color and remove topo-svg */
+  body {
+    background-color: #F5F6F7;
+    background-image: none;
+  }
+</style>
+
+<!-- Height Filler -->
+<div class="filler-div"></div>
+
+<div class="indexLogo">
+  <img src="../svg/nodejs.svg" alt="NodeJS logo">
+</div>
+
+<div class="indexText">
+  <p class="indexP">Authentication with NodeJS</p>
+</div>
+
+<% include ./partials/footer %>
