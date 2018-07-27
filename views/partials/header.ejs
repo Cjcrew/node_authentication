@@ -21,7 +21,7 @@
     <% if (!user) { %>
       <a href='/login'>Log in</a> <!-- Display Username is logged in -->
     <%  } else { %>
-      <a href='#'><span class="lit">Welcome, <i class="fas fa-user-circle"></i> <strong><%= user.username %></strong></span></a>
+      <a href='#'><span class="lit">Welcome, <i class="fas fa-user-circle"></i> <strong class="green"><%= user.username %></strong></span></a>
     <%  } %>
     <% if (user) { %>
       <a href='/logout' method='post'>Logout <i class="fas fa-sign-out-alt"></i></a> <!-- Display logout only if logged in -->
