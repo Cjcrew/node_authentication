@@ -35,7 +35,7 @@ router.post('/login', (req, res) => {
     } else {
 
     req.session.userId = user._id;
-    res.redirect('/dashboard');
+    res.redirect('/');
     }
   });
 });
