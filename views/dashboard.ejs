@@ -12,6 +12,34 @@
     <p><%= user.firstName %></p>
     <p><%= user.lastName %></p>
     <p><%= user.email %></p>
+    <button onclick="document.getElementById('id01').style.display='block'">Update info <i class="fas fa-edit"></i></button>
+      <div id="id01" class="modal">
+        <form class="modal-content animate" action="/updateUser" method="post">
+
+              <div class="container">
+                <label class="labelColor" for="username"><strong><u>Username:</u></strong></label>
+                <input type="text" value="<%= user.username %>" name="username" required>
+
+                <label class="labelColor" for="firstName"><strong><u>First Name:</u></strong></label>
+                <input type="text" value="<%= user.firstName %>" name="firstName" required>
+
+                <label class="labelColor" for="lastName"><strong><u>Last Name:</u></strong></label>
+                <input type="text" value="<%= user.lastName %>" name="lastName" required>
+
+                <label class="labelColor" for="email"><strong><u>Email:</u></strong></label>
+                <input type="email" value="<%= user.email %>" name="email" required>
+
+                <!-- csrf Protection -->
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+                <button class="updateButton" type="submit">Update</button>
+              </div>
+
+            <div class="container" style="background-color:#f1f1f1">
+              <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+            </div>
+        </form>
+    </div>
   </div>
 </div>
 
