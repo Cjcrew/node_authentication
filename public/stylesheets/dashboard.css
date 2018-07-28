@@ -1,0 +1,41 @@
+.dashboardContainer {
+  background-color: white;
+  border: 3px solid #859DED;
+  border-radius: 2px;
+  width: 650px;
+  height: 450px;
+  margin: 0 auto;
+  padding-top: 35px;
+}
+
+.circle {
+  margin: 0 auto;
+  height: 75px;
+  width: 75px;
+  background-color: #859DED;
+  border-radius: 50%;
+  display:block;
+}
+
+.dashboardContainer p {
+  height: 35px;
+  width: 58%;
+  margin: 30px auto;
+  border: 2px solid grey;
+  border-radius: 8px;
+  text-align: center;
+  padding: 2px;
+  background-color: #859DED;
+  color: #36383E;
+  font-size: 20px;
+}
+
+.dashboardContainer p:hover {
+  height: 35px;
+  width: 60%;
+  border: 2px solid none;
+  padding: 4px;
+  background-color: #A8BEFF;
+  color: white;
+  transition: height, width, border, padding, background-color, color, 350ms;
+}
