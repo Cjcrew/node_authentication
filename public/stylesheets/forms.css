@@ -29,7 +29,8 @@ input[type=email], input[type=password], input[type=text] {
   box-sizing: border-box;
 }
 
-form input:hover {
+form input:hover, form input:focus {
+  outline: none;
   border-color: #6ABD49;
   border-width: 3px;
   transition: border-color 2s;
