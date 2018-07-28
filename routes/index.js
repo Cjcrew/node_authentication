@@ -79,4 +79,21 @@ router.post('/register', (req, res) => {
   });
 });
 
+// =======================
+// UPDATE USER INFO ROUTE
+// =======================
+router.post('/updateUser', (req, res) => {
+  User.findByIdAndUpdate(req.session.userId, {
+    username: req.body.username,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email
+  }, (err) => {
+    if (err) {
+      console.log(err);
+    }
+  });
+
+  res.redirect('/dashboard');
+});
 module.exports = router;
