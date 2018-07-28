@@ -1,12 +1,18 @@
 <% include ./partials/header %>
 
-<h1>Dashboard Page</h1>
+<!-- Height Filler -->
+<div class="filler-div-smaller"></div>
 
-<p>Nothing here yet...</p>
+<div class="dashboardContainer">
 
-<form action="/logout" method="get">
-  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-  <input type="submit" value="Logout">
-</form>
+<div class="circle"></div>
+
+  <div class="infoContainer">
+    <p><%= user.username %></p>
+    <p><%= user.firstName %></p>
+    <p><%= user.lastName %></p>
+    <p><%= user.email %></p>
+  </div>
+</div>
 
 <% include ./partials/footer %>
