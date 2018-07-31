@@ -5,16 +5,16 @@
 
 <div class="dashboardContainer">
 
-<div class="circle"></div>
-
+<!-- <div class="circle"></div> -->
   <div class="infoContainer">
     <p><%= user.username %></p>
     <p><%= user.firstName %></p>
     <p><%= user.lastName %></p>
     <p><%= user.email %></p>
+    <p><a onclick="document.getElementById('delForm').submit();">Delete Account</a></p>
     <button onclick="document.getElementById('id01').style.display='block'">Update info <i class="fas fa-edit"></i></button>
       <div id="id01" class="modal">
-        <form class="modal-content animate" action="/updateUser" method="post">
+        <form class="modal-content animate" action="/updateUser" method="post" autocomplete="off">
 
               <div class="container">
                 <label class="labelColor" for="username"><strong><u>Username:</u></strong></label>
@@ -42,5 +42,11 @@
     </div>
   </div>
 </div>
+
+  <form id="delForm" action="/accountDel" method="post">
+    <input hidden type="submit" value="Delete Account">
+    <!-- csrf Protection -->
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+  </form>
 
 <% include ./partials/footer %>

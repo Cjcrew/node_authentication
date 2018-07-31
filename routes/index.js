@@ -96,4 +96,18 @@ router.post('/updateUser', (req, res) => {
 
   res.redirect('/dashboard');
 });
+
+// =======================
+// DELETE USER ROUTE
+// =======================
+router.post('/accountDel', (req, res, next) => {
+  User.deleteOne({ _id: req.session.userId }, (err) => {
+    if (err) {
+      next(err);
+    }
+  });
+  req.session.destroy();
+  return res.redirect('/');
+});
+
 module.exports = router;

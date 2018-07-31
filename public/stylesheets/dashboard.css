@@ -3,7 +3,7 @@
   border: 3px solid #008944;
   border-radius: 2px;
   width: 650px;
-  height: 450px;
+  height: 440px;
   margin: 0 auto;
   padding-top: 35px;
 }
@@ -27,7 +27,7 @@
   padding: 2px;
   background-color: white;
   color: black;
-  font-size: 20px;
+  font-size: 23px;
 }
 
 .dashboardContainer p:hover {
@@ -35,8 +35,10 @@
   width: 60%;
   border: 2px solid none;
   padding: 4px;
-  background-color: #00FF7F;
+  background-color: rgba(0, 0, 0, 0.3);
   color: white;
+  font-weight: normal;
+  font-style: normal;
   transition: height, width, border, padding, background-color, color, 350ms;
 }
 
@@ -74,11 +76,11 @@ button:hover {
 /* Extra styles for the cancel button */
 .cancelbtn {
     width: auto;
-    height: 5px;
+    height: 2px;
     line-height: 0px;
-    padding: 10px 18px;
+    padding: 3px 5px;
     background-color: #E2252B;
-    border-radius: 6px;
+    border-radius: 3px;
 }
 
 .container {
@@ -107,7 +109,7 @@ button:hover {
     margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
     border: 1px solid #888;
     border-radius: 8px;
-    width: 50%; /* Could be more or less, depending on screen size */
+    width: 25%; /* Could be more or less, depending on screen size */
     color: black;
 }
 
@@ -132,7 +134,18 @@ button:hover {
 }
 
 .updateButton {
-  border-radius: 11px;
+  border-radius: 4px;
+  line-height: 0px;
+  height: 10px;
+}
+
+.infoContainer p a {
+  color: red;
+  cursor: pointer;
+}
+
+.infoContainer p a:hover {
+  font-weight: normal;
 }
 
 @-webkit-keyframes animatezoom {
