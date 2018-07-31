@@ -3,21 +3,21 @@
 <!-- Height Filler -->
 <div class="filler-div-smaller"></div>
 
-<form class="registerForm" action="/register" method="post">
+<form class="registerForm" action="/register" method="post" autocomplete="off">
   <label for="username"><strong><u>Username:</u></strong></label>
-  <input type="text" name="username" placeholder="CatLover69" maxlength="10" required>
+  <input type="text" name="username" maxlength="10" required>
 
   <label for="firstName"><strong><u>First Name:</u></strong></label>
-  <input type="text" name="firstName" placeholder="John" maxlength="10" required>
+  <input type="text" name="firstName" maxlength="10" required>
 
   <label for="lastName"><strong><u>Last Name:</u></strong></label>
-  <input type="text" name="lastName" placeholder="Doe" maxlength="10" required>
+  <input type="text" name="lastName" maxlength="10" required>
 
   <label for="password"><strong><u>Password:</u></strong></label>
   <input type="password" name="password" maxlength="24" required>
 
   <label for="email"><strong><u>Email:</u></strong></label>
-  <input type="email" name="email" placeholder="JohnDoe@gmail.com" required>
+  <input type="email" name="email" required>
   <!-- csrf Protection -->
   <input type="hidden" name="_csrf" value="<%= csrfToken %>">
 
