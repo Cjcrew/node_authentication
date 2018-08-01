@@ -11,7 +11,7 @@
     <p><%= user.firstName %></p>
     <p><%= user.lastName %></p>
     <p><%= user.email %></p>
-    <p><a onclick="document.getElementById('delForm').submit();">Delete Account</a></p>
+    <p><a id="delAcc">Delete Account</a></p>
     <button onclick="document.getElementById('id01').style.display='block'">Update info <i class="fas fa-edit"></i></button>
       <div id="id01" class="modal">
         <form class="modal-content animate" action="/updateUser" method="post" autocomplete="off">

@@ -66,7 +66,6 @@ app.use((req, res, next) => {
     req.user = user;
     // available in all templates
     res.locals.user = user;
-
     next();
   });
 });
