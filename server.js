@@ -8,10 +8,8 @@ const app         = express();
 const sessions    = require('client-sessions');
 const bcrypt      = require('bcryptjs');
 const User        = require('./models/user');
-// const userInfo    = require('./middleware/user_info');
 const csurf       = require('csurf');
 const helmet      = require('helmet');
-const middleware  = require('./middleware/middleware');
 // ===================================================
 
 // Require routes
