@@ -17,7 +17,7 @@ body {
 
 .navbar a {
   float: left;
-  color: #595F67;
+  color: #F8F7F8;
   text-align: center;
   padding: 8px;
   text-decoration: none;
@@ -33,7 +33,7 @@ body {
 }
 
 .navbar a:hover {
-  color: #F8F7F8;
+  color: #595F67;
   transition-timing-function: ease-out;
   transition: color 350ms;
 }
