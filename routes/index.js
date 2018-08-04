@@ -100,7 +100,7 @@ router.post('/updateUser', (req, res) => {
 // =======================
 // DELETE USER ROUTE
 // =======================
-router.post('/accountDel', (req, res, next) => {
+router.post('/destroyUser', (req, res, next) => {
   User.deleteOne({ _id: req.session.userId }, (err) => {
     if (err) {
       next(err);
