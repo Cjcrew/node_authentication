@@ -1,8 +1,6 @@
-# Simple Node Authentication :closed_lock_with_key:
+# simple node authentication :closed_lock_with_key:
 
-_Barebones auth app using node & express with CRUD operations._
-
-<img href="https://imgur.com/wZSkeGF"><img src="https://i.imgur.com/wZSkeGF.png" title="source: imgur.com" /></img>
+_Barebones authentication node app with crud functionality._
 
 * Dependencies : _[package.json](package.json)_
 
